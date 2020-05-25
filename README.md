@@ -69,13 +69,13 @@ Dans cette première partie, vous allez analyser [une connexion WPA Entreprise](
  
 > **_Question :_** Quelle ou quelles méthode(s) d’authentification est/sont proposé(s) au client ?
 > 
-> **_Réponse :_**  Les méthodes EAP-TLS et PEAP sont proposées
+> **_Réponse :_**  Les méthodes EAP-TLS et PEAP sont proposées.
 
 ---
 
 > **_Question:_** Quelle méthode d’authentification est finalement utilisée ?
 > 
-> **_Réponse:_** WPA2-Entreprise PEAP
+> **_Réponse:_** WPA2-Entreprise PEAP.
 
 ---
 
@@ -85,19 +85,19 @@ Dans cette première partie, vous allez analyser [une connexion WPA Entreprise](
 >
 > **_Réponse:_**
 >
->   Oui, le server envoie une chaine de certificats (qui sont fragmentés en 5 messages EAP-TLS).
+>   Oui, le server envoie une chaîne de certificats (qui sont fragmentés en 5 messages EAP-TLS).
 >
->   De façon générale, un serveur devra toujours envoyer un certificat au client, bien qu'il puisse etre invalide si 
+>   De façon générale, un serveur devra toujours envoyer un certificat au client, bien qu'il puisse être invalide si 
 >   le client le permet
 > 
 > - b. Le client envoie-t-il un certificat au serveur ? Pourquoi oui ou non ?
 > 
 > **_Réponse:_**
 >   
->   Non, dans le protocole PEAP, le client n'à pas besoin de fournir de certificat au serveur
->   (Dans le cas ou le client le fournirai, le serveur l'ignorerait et le client devra tout de même finaliser l'authentification PEAP)
+>   Non, dans le protocole PEAP, le client n'a pas besoin de fournir de certificat au serveur
+>   (Dans le cas où le client le fournirait, le serveur l'ignorait et le client devrait tout de même finaliser l'authentification PEAP).
 >
->   Parcontre, dans le cas du protocole EAP-TLS, le client doit fournir un certificat.
+>   Par contre, dans le cas du protocole EAP-TLS, le client doit fournir un certificat.
 > 
 
 ---
