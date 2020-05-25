@@ -51,19 +51,73 @@ Dans cette première partie, vous allez analyser [une connexion WPA Entreprise](
 
 - Comparer [la capture](files/auth.pcap) au processus d’authentification donné en théorie (n’oubliez pas les captures d'écran pour illustrer vos comparaisons !). En particulier, identifier les étapes suivantes :
 	- Requête et réponse d’authentification système ouvert
+
+	![open system request](assets/img/01_opensystem_req.png)
+
+	![open system response](assets/img/02_opensystem_rsp.png)
+
  	- Requête et réponse d’association (ou reassociation)
+
+	![reassociation request](assets/img/03_reassoc_req.png)
+
+	![reassociation response](assets/img/04_reassoc_rsp.png)
+ 
 	- Négociation de la méthode d’authentification entreprise
+
+	![authentification negative request](assets/img/07_auth_neg_req.png)
+
+	![authentification negative response](assets/img/08_auth_neg_rak.png)
+
+	![authentification positive request](assets/img/09_auth_pos_req.png)
+
 	- Phase d’initiation. Arrivez-vous à voir l’identité du client ?
+
+	![identity request](assets/img/05_identity_req.png)
+
+	![identity response](assets/img/06_identity_rsp.png)
+
+	L'identité du client est `einet\joel.gonin`
+
 	- Phase hello :
 		- Version TLS
 		- Suites cryptographiques et méthodes de compression proposées par le client et acceptées par l’AP
 		- Nonces
 		- Session ID
+
+		Ce message contient toutes ces informations, la partie nonce est représentée par "random"
+
+		![client hello](assets/img/10_client_hello.png)
+
 	- Phase de transmission de certificats
 	 	- Echanges des certificats
+
+		On a pu observer l'envoi du certificat du serveur, une image se trouve plus bas, en réponse à la question liée. Voici l'envoi d'un des fragments du certificat, avec quelques informations lisibles :
+
+		![part of the certificate data](assets/img/11_server_certificate.png)
+
 		- Change cipher spec
+
+		![change cipher spec](assets/img/14_server_change_cipher_spec.png)
+
 	- Authentification interne et transmission de la clé WPA (échange chiffré, vu comme « Application data »)
+
+	Echange chiffré entre STA et Radius pour l'authentification.
+
+	![application data - internal auth and WPA key exchange](assets/img/15_internal_auth_wpa_transmission.png)
+
 	- 4-way handshake
+
+	Premier message :
+
+	![first message](assets/img/17_4way_1.png)
+
+	Dernier message :
+
+	![last message](assets/img/19_4way_4.png)
+
+	Les 4 messages :
+
+	![all 4 messages](assets/img/20_4way_global.png)
 
 ### Répondez aux questions suivantes :
  
@@ -86,6 +140,10 @@ Dans cette première partie, vous allez analyser [une connexion WPA Entreprise](
 > **_Réponse:_**
 >
 >   Oui, le server envoie une chaîne de certificats (qui sont fragmentés en 5 messages EAP-TLS).
+>
+>	![fragments certificate](assets/img/12_server_certificate_frag.png)
+>
+>	![reconstructed certificate](assets/img/13_server_certificate_reconstructed.png)
 >
 >   De façon générale, un serveur devra toujours envoyer un certificat au client, bien qu'il puisse être invalide si 
 >   le client le permet
